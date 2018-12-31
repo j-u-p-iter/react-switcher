@@ -4,6 +4,8 @@ import { fireEvent, render } from "react-testing-library";
 import { SwitcherController } from "../.";
 
 describe("SwitcherController", () => {
+  const switcherName = "switcher-name";
+
   let getByText: any;
   let onChangeMock: any;
   let getOn: any;
@@ -12,7 +14,7 @@ describe("SwitcherController", () => {
     onChangeMock = jest.fn();
 
     const Switcher = () => (
-      <SwitcherController onChange={onChangeMock} name="switcher-name">
+      <SwitcherController onChange={onChangeMock} name={switcherName}>
         {({ api }) => {
           getOn = api.getOn;
 
@@ -56,7 +58,7 @@ describe("SwitcherController", () => {
     expect(onChangeMock).toHaveBeenCalledTimes(1);
     expect(onChangeMock).toHaveBeenCalledWith({
       currentTarget: {
-        name: "switcher-name",
+        name: switcherName,
         value: true
       }
     });
@@ -67,7 +69,7 @@ describe("SwitcherController", () => {
     expect(onChangeMock).toHaveBeenCalledTimes(2);
     expect(onChangeMock).toHaveBeenCalledWith({
       currentTarget: {
-        name: "switcher-name",
+        name: switcherName,
         value: false
       }
     });

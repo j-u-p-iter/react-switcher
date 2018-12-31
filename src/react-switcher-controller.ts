@@ -4,7 +4,7 @@ import * as React from "react";
 // but not to complicate we just simulate event object, creating pseudoEvent object
 interface IPseudoEvent {
   currentTarget: {
-    name?: string;
+    name: string;
     value: boolean;
   };
 }
@@ -21,13 +21,12 @@ interface IChildrenProps {
 export interface ISwitcherProps {
   onChange: (pseudoEvent?: IPseudoEvent) => void;
   children: (childrenProps: IChildrenProps) => React.ReactNode;
-  name?: string;
+  name: string;
   defaultOn?: boolean;
 }
 
 interface IDefaultProps {
   defaultOn: boolean;
-  onChange: () => void;
 }
 
 type SwitcherWithDefaultProps = ISwitcherProps & IDefaultProps;
@@ -41,8 +40,7 @@ export class SwitcherController extends React.Component<
   ISwitcherState
 > {
   public static defaultProps: IDefaultProps = {
-    defaultOn: false,
-    onChange: () => {}
+    defaultOn: false
   };
 
   public getProps = () => this.props as SwitcherWithDefaultProps;
